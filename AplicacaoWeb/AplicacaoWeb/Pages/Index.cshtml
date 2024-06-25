@@ -1,0 +1,62 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Multiple Select Example with Select2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="mb-3">
+            <label for="select1" class="form-label">Select Option 1</label>
+            <select class="form-select" id="select1" multiple="multiple">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+        </div>
+        <button id="selectOption1" class="btn btn-primary mb-2">Select Option 1</button>
+        <button id="selectOptions1And2" class="btn btn-primary mb-2">Select Options 1 and 2</button>
+        <button id="selectAllOptions" class="btn btn-primary mb-2">Select All Options</button>
+        <button id="deselectAllOptions" class="btn btn-danger mb-2">Deselect All Options</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#select1').select2({
+                width: '100%',
+                placeholder: "Select Options",
+                allowClear: true
+            });
+
+            $('#selectOption1').click(function () {
+                $('#select1').val(['1']).trigger('change');
+            });
+
+            $('#selectOptions1And2').click(function () {
+                $('#select1').val(['1', '2']).trigger('change');
+            });
+
+            $('#selectAllOptions').click(function () {
+                $('#select1').val(['1', '2', '3']).trigger('change');
+            });
+
+            $('#deselectAllOptions').click(function () {
+                $('#select1').val(null).trigger('change');
+            });
+        });
+    </script>
+</body>
+</html>
